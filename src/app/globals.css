@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Instrument Sans', system-ui, sans-serif;
+  --font-body: 'Karla', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-feature-settings: 'ss01' on, 'ss02' on;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-medium tracking-tight text-ink;
+  }
+
+  /* Keyboard focus is always visible, and never suppressed for mouse users
+     via the usual outline:none anti-pattern. */
+  :focus-visible {
+    outline: 2px solid theme('colors.accent');
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: theme('colors.accent');
+    color: theme('colors.paper');
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Signature motif: four small viewfinder-style corner brackets. Used on the
+     hero image, gallery thumbnails (on hover/focus), and the lightbox frame —
+     the one recurring visual idea that ties the whole site back to the act of
+     framing a photograph. Kept to a single hairline stroke, no fill. */
+  .corner-bracket {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-color: currentColor;
+    opacity: 0;
+    transition: opacity 0.4s theme('transitionTimingFunction.premium');
+  }
+
+  .corner-bracket--tl {
+    top: 12px;
+    left: 12px;
+    border-top-width: 1.5px;
+    border-left-width: 1.5px;
+  }
+
+  .corner-bracket--tr {
+    top: 12px;
+    right: 12px;
+    border-top-width: 1.5px;
+    border-right-width: 1.5px;
+  }
+
+  .corner-bracket--bl {
+    bottom: 12px;
+    left: 12px;
+    border-bottom-width: 1.5px;
+    border-left-width: 1.5px;
+  }
+
+  .corner-bracket--br {
+    bottom: 12px;
+    right: 12px;
+    border-bottom-width: 1.5px;
+    border-right-width: 1.5px;
+  }
+
+  .group:hover .corner-bracket,
+  .group:focus-visible .corner-bracket,
+  .corner-bracket--visible {
+    opacity: 1;
+  }
+}

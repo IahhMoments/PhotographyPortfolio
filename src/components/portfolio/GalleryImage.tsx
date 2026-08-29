@@ -1,0 +1,41 @@
+import Image from 'next/image';
+import { CornerFrame } from '@/components/ui/CornerFrame';
+import type { PortfolioImage } from '@/data/portfolio';
+
+interface GalleryImageProps {
+  image: PortfolioImage;
+  index: number;
+  total: number;
+  onOpen: () => void;
+}
+
+export function GalleryImage({ image, index, total, onOpen }: GalleryImageProps) {
+  const aspect = image.height / image.width;
+  const isTall = aspect > 1.15;
+
+  return (
+    <button
+      type="button"
+      onClick={onOpen}
+      className="group block w-full text-left focus-visible:outline-none"
+      aria-label={`Open image ${index + 1} of ${total}: ${image.alt}`}
+    >
+      <CornerFrame className="overflow-hidden rounded-sm bg-paper-soft ring-0 transition-shadow group-focus-visible:ring-2 group-focus-visible:ring-accent">
+        <div className={isTall ? 'relative aspect-[4/5]' : 'relative aspect-[4/3]'}>
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
+            loading="lazy"
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
+            className="object-cover transition-transform duration-700 ease-premium group-hover:scale-[1.03]"
+          />
+        </div>
+      </CornerFrame>
+      <div className="mt-2 flex items-baseline justify-between font-mono text-[11px] uppercase tracking-widest2 text-ink-soft">
+        <span>{String(index + 1).padStart(2, '0')}</span>
+        {image.caption ? <span className="truncate pl-4">{image.caption}</span> : null}
+      </div>
+    </button>
+  );
+}
