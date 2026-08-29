@@ -6,8 +6,8 @@
 // ---------------------------------------------------------------------------
 
 export const site = {
-  name: 'Adrienne Marsh',
-  shortName: 'Adrienne',
+  name: 'ShotbyMoments',
+  shortName: 'Moments',
   tagline: 'Capturing authentic moments, people, and stories.',
   heroIntro:
     "I'm a portrait, family, and event photographer based in Virginia. My approach is quiet and observational — I look for the real moment in the room, not the posed one, and I edit with a light hand so the work still looks like your life.",
