@@ -31,7 +31,7 @@ export function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-line/70 bg-paper/85 backdrop-blur">
-      <Container className="flex h-20 items-center justify-between">
+      <Container className="flex h-24 items-center justify-between">
         <Link href="/" className="flex items-center" aria-label={`${site.name} — Home`}>
           <Image
             src={assetPath('/images/logo/logo.png')}
@@ -48,7 +48,7 @@ export function Navbar() {
               key={item.href}
               href={item.href}
               className={cn(
-                'font-mono text-xs uppercase tracking-widest2 text-ink-soft transition-colors duration-200 hover:text-ink',
+                'font-mono text-sm uppercase tracking-widest2 text-ink-soft transition-colors duration-200 hover:text-ink',
                 isActive(item.href) && 'text-ink',
               )}
               aria-current={isActive(item.href) ? 'page' : undefined}
@@ -59,7 +59,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:block">
-          <Button href="/contact" variant="primary" className="px-5 py-2.5 text-xs">
+          <Button href="/contact" variant="primary" className="px-6 py-3 text-sm">
             Get booked
           </Button>
         </div>
