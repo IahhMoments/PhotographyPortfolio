@@ -1,6 +1,8 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { primaryNav, site } from '@/data/site';
 import { Container } from '@/components/layout/Container';
+import { assetPath } from '@/lib/utils';
 
 const socialLinks = [
   { label: 'Instagram', href: site.social.instagram },
@@ -13,7 +15,7 @@ export function Footer() {
     <footer className="border-t border-line">
       <Container className="grid gap-12 py-16 sm:py-20 md:grid-cols-[1.2fr_1fr_1fr]">
         <div>
-          <p className="font-display text-xl font-medium text-ink">{site.name}</p>
+          <Image src={assetPath('/images/logo/logo.png')} alt={site.name} width={1600} height={345} className="h-10 w-auto" />
           <p className="mt-3 max-w-xs text-sm text-ink-soft">{site.tagline}</p>
         </div>
 

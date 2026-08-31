@@ -1,12 +1,14 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { primaryNav, site } from '@/data/site';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/layout/Container';
-import { cn } from '@/lib/utils';
+import { assetPath, cn } from '@/lib/utils';
+
 
 export function Navbar() {
   const pathname = usePathname();
@@ -30,8 +32,14 @@ export function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-line/70 bg-paper/85 backdrop-blur">
       <Container className="flex h-20 items-center justify-between">
-        <Link href="/" className="font-display text-lg font-medium tracking-tight text-ink">
-          {site.name}
+        <Link href="/" className="flex items-center" aria-label={`${site.name} — Home`}>
+          <Image
+            src={assetPath('/images/logo/logo.png')}
+            alt={site.name}
+            width={1600}
+            height={345}
+            priority
+            className="h-12 w-auto sm:h-15"/>
         </Link>
 
         <nav className="hidden items-center gap-9 md:flex" aria-label="Primary">
