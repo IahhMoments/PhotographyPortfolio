@@ -32,9 +32,9 @@ export function GalleryImage({ image, index, total, onOpen }: GalleryImageProps)
           />
         </div>
       </CornerFrame>
-      <div className="mt-2 flex items-baseline justify-between font-mono text-[11px] uppercase tracking-widest2 text-ink-soft">
-        <span>{String(index + 1).padStart(2, '0')}</span>
-        {image.caption ? <span className="truncate pl-4">{image.caption}</span> : null}
+      <div className="mt-3 flex items-baseline justify-between gap-3 font-mono text-[12px] uppercase tracking-widest2 text-ink-soft sm:text-[13px]">
+        <span className="text-base font-medium text-ink sm:text-lg">{String(index + 1).padStart(2, '0')}</span>
+        {image.caption ? <span className="truncate pl-4 text-[10px] sm:text-[11px]">{image.caption}</span> : null}
       </div>
     </button>
   );
