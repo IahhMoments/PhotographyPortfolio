@@ -17,7 +17,7 @@ interface CornerFrameProps {
 export function CornerFrame({ children, className, alwaysVisible, tone = 'ink' }: CornerFrameProps) {
   const toneClass = tone === 'paper' ? 'text-paper' : 'text-ink';
   return (
-    <div className={cn('group relative', className)}>
+    <div className={cn('group relative overflow-hidden', className)}>
       {children}
       <span
         aria-hidden="true"
