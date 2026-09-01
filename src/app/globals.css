@@ -73,29 +73,29 @@
   }
 
   .corner-bracket--tl {
-    top: 12px;
-    left: 12px;
+    top: 30px;
+    left: 0;
     border-top-width: 1.5px;
     border-left-width: 1.5px;
   }
 
   .corner-bracket--tr {
-    top: 12px;
-    right: 12px;
+    top: 30px;
+    right: 0;
     border-top-width: 1.5px;
     border-right-width: 1.5px;
   }
 
   .corner-bracket--bl {
-    bottom: 12px;
-    left: 12px;
+    bottom: 30px;
+    left: 0;
     border-bottom-width: 1.5px;
     border-left-width: 1.5px;
   }
 
   .corner-bracket--br {
-    bottom: 12px;
-    right: 12px;
+    bottom: 30px;
+    right: 0;
     border-bottom-width: 1.5px;
     border-right-width: 1.5px;
   }
