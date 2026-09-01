@@ -65,14 +65,14 @@ export function Lightbox({ images, index, onClose, onNavigate }: LightboxProps) 
       }}
     >
       <div className="flex items-center justify-between px-5 py-4 sm:px-8 sm:py-6">
-        <span className="font-mono text-xs uppercase tracking-widest2 text-paper/70">
+        <span className="font-mono text-sm uppercase tracking-widest2 text-paper/80 sm:text-base">
           {String(index + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
         </span>
         <button
           ref={closeButtonRef}
           type="button"
           onClick={onClose}
-          className="font-mono text-xs uppercase tracking-widest2 text-paper transition-opacity hover:opacity-70"
+          className="font-mono text-sm uppercase tracking-widest2 text-paper transition-opacity hover:opacity-70 sm:text-base"
         >
           Close ✕
         </button>
@@ -99,7 +99,7 @@ export function Lightbox({ images, index, onClose, onNavigate }: LightboxProps) 
               type="button"
               onClick={goPrev}
               aria-label="Previous image"
-              className="absolute left-2 top-1/2 hidden -translate-y-1/2 rounded-full border border-paper/30 p-3 text-paper transition-colors hover:border-paper sm:flex"
+              className="absolute left-2 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-paper/30 text-lg text-paper transition-colors hover:border-paper sm:flex"
             >
               ←
             </button>
@@ -107,7 +107,7 @@ export function Lightbox({ images, index, onClose, onNavigate }: LightboxProps) 
               type="button"
               onClick={goNext}
               aria-label="Next image"
-              className="absolute right-2 top-1/2 hidden -translate-y-1/2 rounded-full border border-paper/30 p-3 text-paper transition-colors hover:border-paper sm:flex"
+              className="absolute right-2 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-paper/30 text-lg text-paper transition-colors hover:border-paper sm:flex"
             >
               →
             </button>
@@ -116,15 +116,15 @@ export function Lightbox({ images, index, onClose, onNavigate }: LightboxProps) 
       </div>
 
       {(image.caption || images.length > 1) && (
-        <div className="flex items-center justify-between px-5 pb-6 sm:px-8">
-          <p className="max-w-md text-sm text-paper/70">{image.caption}</p>
+        <div className="flex flex-col items-center gap-3 px-5 pb-6 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+          <p className="max-w-md text-sm text-paper/70 sm:text-base">{image.caption}</p>
           {images.length > 1 ? (
-            <div className="flex gap-3 sm:hidden">
+            <div className="flex justify-center gap-10 sm:hidden">
               <button
                 type="button"
                 onClick={goPrev}
                 aria-label="Previous image"
-                className="rounded-full border border-paper/30 px-4 py-2 text-xs text-paper"
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-paper/30 text-lg text-paper"
               >
                 ←
               </button>
@@ -132,7 +132,7 @@ export function Lightbox({ images, index, onClose, onNavigate }: LightboxProps) 
                 type="button"
                 onClick={goNext}
                 aria-label="Next image"
-                className="rounded-full border border-paper/30 px-4 py-2 text-xs text-paper"
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-paper/30 text-lg text-paper"
               >
                 →
               </button>
