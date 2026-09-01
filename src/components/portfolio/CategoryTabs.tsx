@@ -33,7 +33,7 @@ export function CategoryTabs({ categories, active, onChange }: CategoryTabsProps
             {category.label}
             <span
               className={cn(
-                'absolute bottom-0 left-0 h-[1.5px] w-full bg-accent transition-opacity duration-200 md:-bottom-[25px]',
+                'absolute bottom-0 left-0 h-[1.5px] w-full bg-accent transition-opacity duration-200 md:-bottom-[5px]',
                 isActive ? 'opacity-100' : 'opacity-0',
               )}
               aria-hidden="true"
