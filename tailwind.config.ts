@@ -11,14 +11,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: '#F7F6F2', // primary background
-        'paper-soft': '#ECEAE5', // secondary / card background
-        ink: '#171717', // primary text
-        'ink-soft': '#666666', // secondary text — chosen to clear 4.5:1 contrast on both paper and paper-soft
-        line: '#D9D7D2', // borders, dividers, hairlines
-        accent: '#33465C', // deep slate — used sparingly: focus rings, links, active tab
-        'accent-soft': '#33465C1A', // accent at 10% opacity, for subtle fills
-        dusk: '#0B0B0B', // near-black, used only for the immersive lightbox backdrop
+        paper: '#F3EBE3', // primary background: warm alabaster
+        'paper-soft': '#FAF7F2', // card / elevated surface: soft linen
+        ink: '#3D2B1F', // primary text: dark espresso
+        'ink-soft': '#6E5B4F', // secondary text: muted sepia
+        line: '#8F7D71', // borders, dividers, subtle separators
+        accent: '#965C38', // interactive accent: deep sand / tan
+        'accent-soft': '#965C3826', // accent at 15% opacity
+        dusk: '#1E1A18', // warm dark backdrop for overlays
       },
       fontFamily: {
         // Display: large editorial headings, hero type, nav wordmark.
