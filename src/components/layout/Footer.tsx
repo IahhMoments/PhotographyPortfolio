@@ -12,7 +12,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-line">
+    <footer className="border-t border-line bg-paper">
       <Container className="grid gap-10 py-16 sm:py-20 md:grid-cols-[1.2fr_1fr_1fr]">
         <div className="flex flex-col items-center justify-center text-center">
           <Image src={assetPath('/images/logo/logo.png')} alt={site.name} width={1600} height={345} className="h-10 w-auto" />

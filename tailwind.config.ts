@@ -11,12 +11,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: '#C4C4C4', // primary background: neutral gray stone
+        paper: '#E8E8E8', // primary background: neutral gray stone
         'paper-soft': '#D9D9D9', // elevated surfaces, cards, form fields
         ink: '#000000', // primary text: black
         'ink-soft': '#666666', // secondary text: muted gray
         line: '#979797', // borders and dividers
-        accent: '#B0886D', // warm accent, used sparingly
+        accent: '#b5b0b0', // warm accent, used sparingly
         'accent-soft': '#B0886D20', // subtle warm accent support
         dusk: '#111111', // dark overlay backdrop
       },
