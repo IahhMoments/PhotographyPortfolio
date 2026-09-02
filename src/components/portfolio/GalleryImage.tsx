@@ -27,7 +27,7 @@ export function GalleryImage({ image, index, total, onOpen }: GalleryImageProps)
             alt={image.alt}
             fill
             loading="lazy"
-            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
+            sizes="(min-width: 1024px) 48vw, (min-width: 640px) 55vw, 90vw"
             className="object-cover transition-transform duration-700 ease-premium group-hover:scale-[1.03]"
           />
         </div>

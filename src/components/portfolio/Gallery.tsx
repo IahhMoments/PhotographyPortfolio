@@ -1,6 +1,7 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { CategoryTabs } from '@/components/portfolio/CategoryTabs';
 import { GalleryImage } from '@/components/portfolio/GalleryImage';
 import { Lightbox } from '@/components/portfolio/Lightbox';
@@ -13,8 +14,24 @@ interface GalleryProps {
 }
 
 export function Gallery({ categories, images }: GalleryProps) {
-  const [active, setActive] = useState<PortfolioCategoryId>(categories[0]?.id ?? 'portraits');
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get('category') as PortfolioCategoryId | null;
+  
+  const initialCategory = 
+    categoryParam && categories.some((c) => c.id === categoryParam)
+      ? categoryParam
+      : (categories[0]?.id ?? 'portraits');
+  
+  const [active, setActive] = useState<PortfolioCategoryId>(initialCategory);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  // Update active category if URL parameter changes
+  useEffect(() => {
+    if (categoryParam && categories.some((c) => c.id === categoryParam)) {
+      setActive(categoryParam);
+      setOpenIndex(null);
+    }
+  }, [categoryParam, categories]);
 
   const filtered = useMemo(() => images.filter((img) => img.category === active), [images, active]);
   const activeCategory = categories.find((c) => c.id === active);
@@ -26,6 +43,7 @@ export function Gallery({ categories, images }: GalleryProps) {
 
   return (
     <div>
+
       <CategoryTabs categories={categories} active={active} onChange={handleChangeCategory} />
 
       <p className="mt-8 max-w-md text-sm text-ink-soft">{activeCategory?.description}</p>
@@ -36,7 +54,7 @@ export function Gallery({ categories, images }: GalleryProps) {
           <p className="max-w-xs text-ink-soft">New work for this category is coming soon — check back shortly.</p>
         </div>
       ) : (
-        <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-3">
           {filtered.map((image, i) => (
             <FadeIn key={image.id} delay={Math.min(i, 6) * 60}>
               <GalleryImage image={image} index={i} total={filtered.length} onOpen={() => setOpenIndex(i)} />

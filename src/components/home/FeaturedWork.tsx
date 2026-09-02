@@ -27,7 +27,7 @@ export function FeaturedWork() {
       <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         {images.map((image, i) => (
           <FadeIn key={image.id} delay={i * 80} className={i === 0 ? 'col-span-2 row-span-2' : ''}>
-            <Link href="/portfolio" className="block h-full">
+            <Link href={`/portfolio?category=${image.category}`} className="block h-full">
               <CornerFrame className="h-full overflow-hidden rounded-sm bg-paper-soft">
                 <div className={i === 0 ? 'relative aspect-square sm:aspect-[4/5]' : 'relative aspect-[4/5]'}>
                   <Image
