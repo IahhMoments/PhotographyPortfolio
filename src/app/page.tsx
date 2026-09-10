@@ -11,14 +11,11 @@ export default function HomePage() {
       <FeaturedWork />
       <CTABand
         heading="Love what you see? Let's create something together."
-        body="Explore packages for portraits, families, and events."
-        ctaLabel="View pricing"
-        ctaHref="/pricing"
-      />
-      <CTABand
-        heading="Ready to create something memorable?"
+        body="Explore packages for portraits, families, and events, then lock in your date."
         ctaLabel="Get booked"
         ctaHref="/contact"
+        secondaryLabel="View pricing"
+        secondaryHref="/pricing"
         tone="inverted"
       />
     </>
