@@ -115,10 +115,24 @@ export function getImagesByCategory(category: PortfolioCategoryId): PortfolioIma
   return portfolioImages.filter((image) => image.category === category);
 }
 
-// A short cross-section used for the "Selected Work" preview on the homepage.
-export function getFeaturedImages(count = 4): PortfolioImage[] {
-  const featured = [portfolioImages[0], portfolioImages[6], portfolioImages[11], portfolioImages[1]].filter(
-    (img): img is PortfolioImage => Boolean(img),
-  );
-  return featured.slice(0, count);
+// Fisher–Yates shuffle — returns a new array in randomized order without
+// mutating the input.
+function shuffle<T>(items: T[]): T[] {
+  const result = [...items];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j]!, result[i]!];
+  }
+  return result;
+}
+
+// A randomized cross-section used for the "Selected Work" collage on the
+// homepage. Pulls from every category except 'coming-soon', shuffles the
+// order, and returns up to `count` images — as more real photos are added,
+// the collage grows toward that cap. Note: since this site is statically
+// exported, the shuffle runs at build time — the order is random but fixed
+// until the next build/deploy, not re-randomized on every page load.
+export function getFeaturedImages(count = 25): PortfolioImage[] {
+  const eligible = portfolioImages.filter((image) => image.category !== 'coming-soon');
+  return shuffle(eligible).slice(0, count);
 }
