@@ -14,8 +14,6 @@ export default function HomePage() {
         body="Explore packages for portraits, families, and events, then lock in your date."
         ctaLabel="Get booked"
         ctaHref="/contact"
-        secondaryLabel="View pricing"
-        secondaryHref="/pricing"
         tone="inverted"
       />
     </>
