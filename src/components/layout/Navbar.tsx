@@ -32,7 +32,7 @@ export function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-line/70 bg-paper/85 backdrop-blur">
       <Container className="flex h-24 items-center justify-between">
-        <Link href="/" className="flex items-center" aria-label={`${site.name} — Home`}>
+        <Link href="/" className="flex shrink-0 items-center" aria-label={`${site.name} — Home`}>
           <Image
             src={assetPath('/images/logo/logo.png')}
             alt={site.name}
@@ -42,13 +42,13 @@ export function Navbar() {
             className="h-12 w-auto sm:h-15"/>
         </Link>
 
-        <nav className="hidden items-center gap-9 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
           {primaryNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               className={cn(
-                'font-mono text-sm uppercase tracking-widest2 text-ink-soft transition-colors duration-200 hover:text-ink',
+                'whitespace-nowrap font-mono text-sm uppercase tracking-widest2 text-ink-soft transition-colors duration-200 hover:text-ink',
                 isActive(item.href) && 'text-ink',
               )}
               aria-current={isActive(item.href) ? 'page' : undefined}
@@ -58,7 +58,7 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden shrink-0 lg:block">
           <Button href="/contact" variant="primary" className="px-6 py-3 text-sm">
             Get booked
           </Button>
@@ -66,7 +66,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center md:hidden"
+          className="flex h-10 w-10 items-center justify-center lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? 'Close menu' : 'Open menu'}
@@ -92,7 +92,7 @@ export function Navbar() {
       <div
         id="mobile-menu"
         className={cn(
-          'grid overflow-hidden border-t border-line/70 bg-paper transition-[grid-template-rows] duration-300 ease-premium md:hidden',
+          'grid overflow-hidden border-t border-line/70 bg-paper transition-[grid-template-rows] duration-300 ease-premium lg:hidden',
           open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
         )}
       >
