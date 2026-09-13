@@ -42,7 +42,7 @@ export function Navbar() {
             className="h-12 w-auto sm:h-15"/>
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-7 xl:flex" aria-label="Primary">
           {primaryNav.map((item) => (
             <Link
               key={item.href}
@@ -58,7 +58,7 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden shrink-0 lg:block">
+        <div className="hidden shrink-0 xl:block">
           <Button href="/contact" variant="primary" className="px-6 py-3 text-sm">
             Get booked
           </Button>
@@ -66,7 +66,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center lg:hidden"
+          className="flex h-10 w-10 items-center justify-center xl:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? 'Close menu' : 'Open menu'}
@@ -92,7 +92,7 @@ export function Navbar() {
       <div
         id="mobile-menu"
         className={cn(
-          'grid overflow-hidden border-t border-line/70 bg-paper transition-[grid-template-rows] duration-300 ease-premium lg:hidden',
+          'grid overflow-hidden border-t border-line/70 bg-paper transition-[grid-template-rows] duration-300 ease-premium xl:hidden',
           open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
         )}
       >
