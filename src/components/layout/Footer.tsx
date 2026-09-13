@@ -6,7 +6,6 @@ import { assetPath } from '@/lib/utils';
 
 const socialLinks = [
   { label: 'Instagram', href: site.social.instagram },
-  { label: 'Pinterest', href: site.social.pinterest },
   { label: 'Facebook', href: site.social.facebook },
 ];
 
@@ -41,28 +40,27 @@ export function Footer() {
 
         <div>
           <p className="font-mono text-xs uppercase tracking-widest2 text-ink-soft">Connect</p>
-          <ul className="mt-4 grid grid-cols-2 gap-x-3 gap-y-2">
+          <ul className="mt-4 grid gap-y-2">
             <li>
-              <a href={`mailto:${site.email}`} className="block text-base text-ink transition-colors hover:text-accent">
+              <a
+                href={`mailto:${site.email}`}
+                className="block break-all text-base text-ink transition-colors hover:text-accent"
+              >
                 {site.email}
               </a>
             </li>
-            {socialLinks.map((link, index) => {
-              const isLastOddItem = socialLinks.length % 2 !== 0 && index === socialLinks.length - 1;
-
-              return (
-                <li key={link.label} className={isLastOddItem ? 'col-span-2' : undefined}>
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-base text-ink transition-colors hover:text-accent"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              );
-            })}
+            {socialLinks.map((link) => (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-base text-ink transition-colors hover:text-accent"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </Container>
