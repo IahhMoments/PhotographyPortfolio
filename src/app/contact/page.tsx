@@ -21,12 +21,9 @@ export default function ContactPage() {
       <Container as="section" className="grid gap-16 pb-28 lg:grid-cols-[1fr_1.4fr]">
         <div>
           <p className="font-mono text-xs uppercase tracking-widest2 text-ink-soft">Direct</p>
-          <a href={`mailto:${site.email}`} className="mt-3 block text-lg text-ink hover:text-accent">
-            {site.email}
-          </a>
-          <a href={`tel:${site.phone.replace(/[^\d+]/g, '')}`} className="mt-1 block text-lg text-ink hover:text-accent">
-            {site.phone}
-          </a>
+            <a href={`mailto:${site.email}`} className="mt-3 block text-lg text-ink hover:text-accent">
+              {site.email}
+            </a>
           <p className="mt-6 text-sm text-ink-soft">{site.serviceArea}</p>
         </div>
 
