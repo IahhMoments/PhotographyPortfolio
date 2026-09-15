@@ -1,12 +1,11 @@
 'use client';
 
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 
 const PHOTOGRAPHY_TYPES = ['Portrait', 'Family', 'Event', 'Other'] as const;
-const BUDGET_RANGES = ['Under $250', '$250–$500', '$500–$1,000', '$1,000+', 'Not sure yet'] as const;
 
 // Set NEXT_PUBLIC_FORMSPREE_FORM_ID in .env.local (see .env.example). This is
 // an endpoint ID, not a secret — see README.md → "Security notes".
@@ -19,7 +18,6 @@ interface FormValues {
   phone: string;
   photographyType: string;
   preferredDate: string;
-  budget: string;
   message: string;
 }
 
@@ -29,7 +27,6 @@ const initialValues: FormValues = {
   phone: '',
   photographyType: '',
   preferredDate: '',
-  budget: '',
   message: '',
 };
 
@@ -45,6 +42,24 @@ export function ContactForm() {
   const [values, setValues] = useState<FormValues>(initialValues);
   const [errors, setErrors] = useState<Partial<Record<keyof FormValues, string>>>({});
   const [notConfiguredMessage, setNotConfiguredMessage] = useState('');
+
+  // Today's date, used as the date input's `min` so past dates are disabled
+  // (grayed out) in the browser's native date picker. Computed in an effect
+  // rather than during render: this site is a static export built once at
+  // deploy time, so a value computed during render would freeze at whatever
+  // day it was built, and would also mismatch between the server-rendered
+  // HTML and the client on hydration. Starting at undefined and setting it
+  // after mount keeps the server/client markup identical, then applies the
+  // real "today" as soon as the page is interactive.
+  const [minDate, setMinDate] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    setMinDate(`${yyyy}-${mm}-${dd}`);
+  }, []);
 
   function update<K extends keyof FormValues>(key: K, value: FormValues[K]) {
     setValues((prev) => ({ ...prev, [key]: value }));
@@ -172,32 +187,16 @@ export function ContactForm() {
           </select>
         </Field>
 
-        <Field label="Preferred date" htmlFor="preferredDate" optional>
+        <Field label="Preferred date" htmlFor="preferredDate" optional className="sm:col-span-2">
           <input
             id="preferredDate"
             name="preferredDate"
             type="date"
+            min={minDate}
             value={values.preferredDate}
             onChange={(e) => update('preferredDate', e.target.value)}
             className={inputClasses(false)}
           />
-        </Field>
-
-        <Field label="Budget" htmlFor="budget" optional>
-          <select
-            id="budget"
-            name="budget"
-            value={values.budget}
-            onChange={(e) => update('budget', e.target.value)}
-            className={inputClasses(false)}
-          >
-            <option value="">Prefer not to say</option>
-            {BUDGET_RANGES.map((range) => (
-              <option key={range} value={range}>
-                {range}
-              </option>
-            ))}
-          </select>
         </Field>
       </div>
 
@@ -245,6 +244,7 @@ function Field({
   error,
   required,
   optional,
+  className,
   children,
 }: {
   label: string;
@@ -252,10 +252,11 @@ function Field({
   error?: string;
   required?: boolean;
   optional?: boolean;
+  className?: string;
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className={className}>
       <label htmlFor={htmlFor} className="mb-2 block text-sm text-ink">
         {label}
         {required ? <span aria-hidden="true" className="text-accent"> *</span> : null}
