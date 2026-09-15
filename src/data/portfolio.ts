@@ -24,6 +24,10 @@ export interface PortfolioCategory {
   id: PortfolioCategoryId;
   label: string;
   description: string;
+  /** Optional id of the photo to use as this album's cover on the Portfolio
+   * page (e.g. 'portraits-3'). Defaults to the first photo in the category
+   * if left unset — set this to feature a specific shot instead. */
+  heroImageId?: string;
 }
 
 export interface PortfolioImage {
@@ -113,6 +117,16 @@ export const portfolioImages: PortfolioImage[] = [
 
 export function getImagesByCategory(category: PortfolioCategoryId): PortfolioImage[] {
   return portfolioImages.filter((image) => image.category === category);
+}
+
+// The cover photo shown for an album on the Portfolio page — the category's
+// chosen `heroImageId` if set, otherwise its first photo. Returns undefined
+// for a category with no photos yet (e.g. 'coming-soon').
+export function getCategoryHeroImage(categoryId: PortfolioCategoryId): PortfolioImage | undefined {
+  const images = getImagesByCategory(categoryId);
+  const category = categories.find((c) => c.id === categoryId);
+  const chosen = category?.heroImageId ? images.find((image) => image.id === category.heroImageId) : undefined;
+  return chosen ?? images[0];
 }
 
 // Fisher–Yates shuffle — returns a new array in randomized order without
