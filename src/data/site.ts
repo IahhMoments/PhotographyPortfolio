@@ -14,7 +14,6 @@ export const site = {
   bioShort:
     'Virginia-based photographer working in natural light, drawn to honest expressions over performed ones.',
   email: 'hello@example.com',
-  phone: '(555) 010-2938',
   location: 'Richmond, Virginia',
   serviceArea: 'Available throughout Central Virginia and for travel bookings.',
   social: {
