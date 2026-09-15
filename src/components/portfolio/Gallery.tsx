@@ -19,23 +19,34 @@ interface CategoryTabsProps {
 
 function CategoryTabs({ categories, active, onChange }: CategoryTabsProps) {
   return (
-    <div className="flex flex-wrap gap-2" role="tablist" aria-label="Portfolio categories">
-      {categories.map((category) => (
-        <button
-          key={category.id}
-          type="button"
-          role="tab"
-          aria-selected={active === category.id}
-          className={
-            active === category.id
-              ? 'border-b border-ink pb-2 text-sm text-ink'
-              : 'border-b border-transparent pb-2 text-sm text-ink-soft transition-colors hover:border-line hover:text-ink'
-          }
-          onClick={() => onChange(category.id)}
-        >
-          {category.label}
-        </button>
-      ))}
+    <div
+      className="flex flex-wrap gap-x-8 gap-y-3 border-b border-line pb-6"
+      role="tablist"
+      aria-label="Portfolio categories"
+    >
+      {categories.map((category) => {
+        const isActive = category.id === active;
+        return (
+          <button
+            key={category.id}
+            type="button"
+            role="tab"
+            aria-selected={isActive}
+            className={`relative pb-2 font-mono text-xs uppercase tracking-widest2 transition-colors duration-200 ${
+              isActive ? 'text-ink' : 'text-ink-soft hover:text-ink'
+            }`}
+            onClick={() => onChange(category.id)}
+          >
+            {category.label}
+            <span
+              aria-hidden="true"
+              className={`absolute bottom-0 left-0 h-[1.5px] w-full bg-accent transition-opacity duration-200 md:-bottom-[5px] ${
+                isActive ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          </button>
+        );
+      })}
     </div>
   );
 }
